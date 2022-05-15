@@ -1,0 +1,17 @@
+DB
+docker pull mcr.microsoft.com/mssql/server
+docker container create -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=AdminPass2022!" -p 14332:1433 mcr.microsoft.com/mssql/server
+docker ps -a
+docker container start {id-contenedor}
+
+SQL Server Management
+127.1.0.1,14332
+sa
+AdminPass2022!
+
+Entity Framework
+add-migration "StartUp" -c "AppDBContext" -outputdir "Context/AppDB"
+Update-Database
+
+cp ./Dockerfile ..
+docker build -t leanderp/microservices-api .
